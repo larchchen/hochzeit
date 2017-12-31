@@ -11,4 +11,8 @@ router.get('/robots.txt', function(req, res, next) {
   res.send('User-agent: *\nDisallow: /');
 });
 
+router.get('/beOurGuest', function(req, res, next) {
+  res.render('guests', { title: 'Be Our Guest' });
+});
+
 module.exports = router;
