@@ -6,4 +6,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/robots.txt', function(req, res, next) {
+  res.set('Content-Type', 'text/plain');
+  res.send('User-agent: *\nDisallow: /');
+});
+
 module.exports = router;
