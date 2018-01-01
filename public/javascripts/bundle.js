@@ -953,14 +953,14 @@ var _reactDom = __webpack_require__(18);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _guestNameForm = __webpack_require__(27);
+var _questionnaire = __webpack_require__(28);
 
-var _guestNameForm2 = _interopRequireDefault(_guestNameForm);
+var _questionnaire2 = _interopRequireDefault(_questionnaire);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener("DOMContentLoaded", function (event) {
-  _reactDom2.default.render(_react2.default.createElement(_guestNameForm2.default, null), document.getElementById('guestForm'));
+  _reactDom2.default.render(_react2.default.createElement(_questionnaire2.default, null), document.getElementById('questionnaire'));
 });
 
 /***/ }),
@@ -7709,13 +7709,16 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 27 */
+/* 27 */,
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -7725,34 +7728,122 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var React = __webpack_require__(2);
 
-var GuestNameForm = function (_React$Component) {
-  _inherits(GuestNameForm, _React$Component);
+var Questionaire = function (_React$Component) {
+  _inherits(Questionaire, _React$Component);
 
-  function GuestNameForm() {
-    _classCallCheck(this, GuestNameForm);
+  function Questionaire(props) {
+    _classCallCheck(this, Questionaire);
 
-    return _possibleConstructorReturn(this, (GuestNameForm.__proto__ || Object.getPrototypeOf(GuestNameForm)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Questionaire.__proto__ || Object.getPrototypeOf(Questionaire)).call(this, props));
+
+    _this.state = {
+      stage: 0,
+      mainGuestName: 'mainGuest',
+      otherGuests: ['guest1', 'guest2']
+    };
+    _this.handleMainGuestNameChange = _this.handleMainGuestNameChange.bind(_this);
+    _this.handleOtherGuestNameChange = _this.handleOtherGuestNameChange.bind(_this);
+    return _this;
   }
 
-  _createClass(GuestNameForm, [{
+  _createClass(Questionaire, [{
+    key: 'handleMainGuestNameChange',
+    value: function handleMainGuestNameChange(event) {
+      this.setState({ mainGuestName: event.target.value });
+    }
+  }, {
+    key: 'handleOtherGuestNameChange',
+    value: function handleOtherGuestNameChange(index, event) {
+      var otherGuests = [].concat(_toConsumableArray(this.state.otherGuests));
+      otherGuests.splice(index, 1, event.target.value);
+      this.setState({ otherGuests: otherGuests });
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
+      var guestNameRow = React.createElement(
+        'div',
+        { className: 'row' },
+        React.createElement(
+          'div',
+          { className: 'three columns' },
+          '\xA0'
+        ),
+        React.createElement(
+          'div',
+          { className: 'six columns' },
+          React.createElement(
+            'div',
+            null,
+            React.createElement(
+              'label',
+              { htmlFor: 'mainGuestName' },
+              'Your name'
+            ),
+            React.createElement('input', {
+              className: 'u-full-width',
+              type: 'text',
+              id: 'mainGuestName',
+              value: this.state.mainGuestName,
+              onChange: this.handleMainGuestNameChange
+            })
+          ),
+          React.createElement(
+            'div',
+            null,
+            this.state.otherGuests.length > 0 && React.createElement(
+              'label',
+              null,
+              'Coming with you'
+            ),
+            this.state.otherGuests.map(function (guest, i) {
+              return React.createElement('input', {
+                className: 'u-full-width',
+                type: 'text',
+                key: i,
+                value: guest,
+                onChange: function onChange(e) {
+                  return _this2.handleOtherGuestNameChange(i, e);
+                }
+              });
+            })
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'three columns' },
+          '\xA0'
+        )
+      );
+
       return React.createElement(
         'div',
-        null,
+        { className: 'container' },
         React.createElement(
-          'h1',
-          null,
-          'Guest Form'
-        )
+          'div',
+          { className: 'row' },
+          React.createElement(
+            'h1',
+            null,
+            'Be our guests'
+          )
+        ),
+        React.createElement(
+          'div',
+          { className: 'row' },
+          React.createElement('hr', { className: 'u-full-width' })
+        ),
+        guestNameRow
       );
     }
   }]);
 
-  return GuestNameForm;
+  return Questionaire;
 }(React.Component);
 
-module.exports = GuestNameForm;
+module.exports = Questionaire;
 
 /***/ })
 /******/ ]);

@@ -28,3 +28,9 @@ node_modules
 
 # Debug log from npm
 npm-debug.log
+
+# Generated files
+public/stylesheets/style.css
+public/stylesheets/style.css.map
+
+public/javascripts/bundle.js
