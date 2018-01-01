@@ -7,6 +7,7 @@ class DefaultLayout extends React.Component {
         <head>
           <title>{this.props.title}</title>
           <link rel='stylesheet' href='/static/stylesheets/style.css' />
+          <link rel='stylesheet' href='/static/material-icons/material-icons.css' />
           <link rel='stylesheet' href='/static/stylesheets/normalize.css' />
           <link rel='stylesheet' href='/static/stylesheets/skeleton.css' />
           <script type="text/javascript" src="/static/javascripts/bundle.js" />

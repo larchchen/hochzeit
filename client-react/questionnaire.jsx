@@ -70,6 +70,7 @@ class Questionaire extends React.Component {
           <hr className="u-full-width" />
         </div>
         {guestNameRow}
+        <i class="material-icons">face</i>
       </div>
     );
   }

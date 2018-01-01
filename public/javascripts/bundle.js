@@ -7835,7 +7835,12 @@ var Questionaire = function (_React$Component) {
           { className: 'row' },
           React.createElement('hr', { className: 'u-full-width' })
         ),
-        guestNameRow
+        guestNameRow,
+        React.createElement(
+          'i',
+          { 'class': 'material-icons' },
+          'face'
+        )
       );
     }
   }]);
