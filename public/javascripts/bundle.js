@@ -7738,11 +7738,13 @@ var Questionaire = function (_React$Component) {
 
     _this.state = {
       stage: 0,
-      mainGuestName: 'mainGuest',
-      otherGuests: ['guest1', 'guest2']
+      mainGuestName: '',
+      otherGuests: []
     };
     _this.handleMainGuestNameChange = _this.handleMainGuestNameChange.bind(_this);
     _this.handleOtherGuestNameChange = _this.handleOtherGuestNameChange.bind(_this);
+    _this.addGuest = _this.addGuest.bind(_this);
+    _this.removeGuest = _this.removeGuest.bind(_this);
     return _this;
   }
 
@@ -7759,11 +7761,47 @@ var Questionaire = function (_React$Component) {
       this.setState({ otherGuests: otherGuests });
     }
   }, {
-    key: 'render',
-    value: function render() {
+    key: 'addGuest',
+    value: function addGuest(event) {
+      var otherGuests = [].concat(_toConsumableArray(this.state.otherGuests), ['']);
+      this.setState({ otherGuests: otherGuests });
+    }
+  }, {
+    key: 'removeGuest',
+    value: function removeGuest(index, event) {
+      var otherGuests = [].concat(_toConsumableArray(this.state.otherGuests));
+      otherGuests.splice(index, 1);
+      this.setState({ otherGuests: otherGuests });
+    }
+  }, {
+    key: 'getGuestNameRows',
+    value: function getGuestNameRows() {
       var _this2 = this;
 
-      var guestNameRow = React.createElement(
+      var addNewGuestButton = React.createElement(
+        'div',
+        null,
+        React.createElement(
+          'div',
+          { className: 'three columns' },
+          '\xA0'
+        ),
+        React.createElement(
+          'div',
+          { className: 'six columns' },
+          React.createElement('input', {
+            type: 'button',
+            value: 'With your +1?',
+            onClick: this.addGuest
+          })
+        ),
+        React.createElement(
+          'div',
+          { className: 'three columns' },
+          '\xA0'
+        )
+      );
+      var mainGuestRow = React.createElement(
         'div',
         { className: 'row' },
         React.createElement(
@@ -7775,41 +7813,17 @@ var Questionaire = function (_React$Component) {
           'div',
           { className: 'six columns' },
           React.createElement(
-            'div',
-            null,
-            React.createElement(
-              'label',
-              { htmlFor: 'mainGuestName' },
-              'Your name'
-            ),
-            React.createElement('input', {
-              className: 'u-full-width',
-              type: 'text',
-              id: 'mainGuestName',
-              value: this.state.mainGuestName,
-              onChange: this.handleMainGuestNameChange
-            })
+            'label',
+            { htmlFor: 'mainGuestName' },
+            'Your name'
           ),
-          React.createElement(
-            'div',
-            null,
-            this.state.otherGuests.length > 0 && React.createElement(
-              'label',
-              null,
-              'Coming with you'
-            ),
-            this.state.otherGuests.map(function (guest, i) {
-              return React.createElement('input', {
-                className: 'u-full-width',
-                type: 'text',
-                key: i,
-                value: guest,
-                onChange: function onChange(e) {
-                  return _this2.handleOtherGuestNameChange(i, e);
-                }
-              });
-            })
-          )
+          React.createElement('input', {
+            className: 'u-full-width',
+            type: 'text',
+            id: 'mainGuestName',
+            value: this.state.mainGuestName,
+            onChange: this.handleMainGuestNameChange
+          })
         ),
         React.createElement(
           'div',
@@ -7817,7 +7831,126 @@ var Questionaire = function (_React$Component) {
           '\xA0'
         )
       );
-
+      var otherGuestRows = addNewGuestButton;
+      if (this.state.otherGuests.length > 0) {
+        otherGuestRows = React.createElement(
+          'div',
+          null,
+          React.createElement(
+            'div',
+            { className: 'row' },
+            React.createElement(
+              'div',
+              { className: 'three columns' },
+              '\xA0'
+            ),
+            React.createElement(
+              'div',
+              { className: 'six columns' },
+              React.createElement(
+                'label',
+                null,
+                'Coming with you'
+              )
+            ),
+            React.createElement(
+              'div',
+              { className: 'three columns' },
+              '\xA0'
+            )
+          ),
+          this.state.otherGuests.map(function (guest, i) {
+            return React.createElement(
+              'div',
+              { className: 'row', key: "guest-" + i },
+              React.createElement(
+                'div',
+                { className: 'three columns' },
+                '\xA0'
+              ),
+              React.createElement(
+                'div',
+                { className: 'six columns' },
+                React.createElement('input', {
+                  className: 'u-full-width',
+                  type: 'text',
+                  value: guest,
+                  onChange: function onChange(e) {
+                    return _this2.handleOtherGuestNameChange(i, e);
+                  }
+                })
+              ),
+              React.createElement(
+                'div',
+                { className: 'one column' },
+                React.createElement(
+                  'i',
+                  {
+                    className: 'material-icons icon-remove-guest',
+                    onClick: function onClick(e) {
+                      return _this2.removeGuest(i, e);
+                    }
+                  },
+                  'remove_circle_outline'
+                )
+              ),
+              React.createElement(
+                'div',
+                { className: 'two columns' },
+                '\xA0'
+              )
+            );
+          }),
+          React.createElement(
+            'div',
+            null,
+            React.createElement(
+              'div',
+              { className: 'three columns' },
+              '\xA0'
+            ),
+            React.createElement(
+              'div',
+              { className: 'six columns' },
+              React.createElement('input', {
+                type: 'button',
+                value: 'With more?',
+                onClick: this.addGuest
+              })
+            ),
+            React.createElement(
+              'div',
+              { className: 'three columns' },
+              '\xA0'
+            )
+          )
+        );
+      }
+      return React.createElement(
+        'div',
+        null,
+        mainGuestRow,
+        otherGuestRows
+      );
+    }
+  }, {
+    key: 'getHiddenForm',
+    value: function getHiddenForm() {
+      var guestNames = this.state.otherGuests.filter(function (g) {
+        return g.length > 0;
+      }).join();
+      return React.createElement(
+        'form',
+        { action: '', method: 'post', style: { display: "none" } },
+        React.createElement('input', { type: 'hidden', name: 'mainGuestName', value: this.state.mainGuestName }),
+        React.createElement('input', { type: 'hidden', name: 'otherGuestNames', value: guestNames })
+      );
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var hiddenForm = this.getHiddenForm();
+      var guestNameRows = this.getGuestNameRows();
       return React.createElement(
         'div',
         { className: 'container' },
@@ -7835,12 +7968,8 @@ var Questionaire = function (_React$Component) {
           { className: 'row' },
           React.createElement('hr', { className: 'u-full-width' })
         ),
-        guestNameRow,
-        React.createElement(
-          'i',
-          { 'class': 'material-icons' },
-          'face'
-        )
+        guestNameRows,
+        hiddenForm
       );
     }
   }]);
