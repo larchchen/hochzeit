@@ -1,5 +1,17 @@
 var React = require('react');
 
+class SectionSeperator extends React.Component {
+  render() {
+    return (
+      <div className="row">
+        <div className="one column">&nbsp;</div>
+        <div className="ten columns"><hr className="u-full-width" /></div>
+        <div className="one column">&nbsp;</div>
+      </div>
+    );
+  }
+}
+
 class Questionaire extends React.Component {
   constructor(props) {
     super(props);
@@ -39,7 +51,7 @@ class Questionaire extends React.Component {
 
   getGuestNameRows() {
     let addNewGuestButton = (
-      <div>
+      <div className="row">
         <div className="three columns">&nbsp;</div>
         <div className="six columns">
           <input
@@ -100,7 +112,7 @@ class Questionaire extends React.Component {
               </div>
             )
           }
-          <div>
+          <div className="row">
             <div className="three columns">&nbsp;</div>
             <div className="six columns">
               <input
@@ -138,12 +150,13 @@ class Questionaire extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <h1>Be our guests</h1>
+          <h1>Be our guest</h1>
         </div>
         <div className="row">
           <hr className="u-full-width" />
         </div>
         {guestNameRows}
+        <SectionSeperator />
         {hiddenForm}
       </div>
     );
