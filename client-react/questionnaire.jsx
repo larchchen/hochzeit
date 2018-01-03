@@ -155,7 +155,7 @@ class Questionaire extends React.Component {
             <input
               type="button"
               value="Morning, 5th Feb"
-              className={this.state.arrivalTime === 1 ? "button-clicked" : undefined}
+              className={this.state.arrivalTime === 3 ? "button-clicked" : undefined}
               onClick={(e) => this.setArrivalTime(1, e)}
             />
           </div>
@@ -171,7 +171,7 @@ class Questionaire extends React.Component {
             <input
               type="button"
               value="Morning, 6th Feb"
-              className={this.state.arrivalTime === 3 ? "button-clicked" : undefined}
+              className={this.state.arrivalTime === 1 ? "button-clicked" : undefined}
               onClick={(e) => this.setArrivalTime(3, e)}
             />
           </div>
@@ -228,7 +228,7 @@ class Questionaire extends React.Component {
     let guestNameRows = this.getGuestNameRows();
     let arrivalTimeRow = this.getArrivalTimeRow();
     let casualDinnerRow = null;
-    if (this.state.arrivalTime < 3) {
+    if (this.state.arrivalTime > 1) {
       casualDinnerRow = <div>{this.getCasualDinnerRow()}<SectionSeperator /></div>;
     }
     return (
