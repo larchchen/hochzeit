@@ -19,7 +19,8 @@ class Questionaire extends React.Component {
       stage: 0,
       mainGuestName: '',
       otherGuests: [],
-      arrivalTime: 0
+      arrivalTime: 0,
+      guestInterests: []
     };
     this.handleMainGuestNameChange = this.handleMainGuestNameChange.bind(this);
     this.handleOtherGuestNameChange = this.handleOtherGuestNameChange.bind(this);
@@ -56,6 +57,25 @@ class Questionaire extends React.Component {
 
   setCasualDinner(option, event) {
     this.setState({casualDinner: option});
+  }
+
+  setAccommondation(option, event) {
+    this.setState({accommondation: option});
+  }
+
+  toggleGuestInterests(option, event) {
+    let guestInterests = [...this.state.guestInterests];
+    let index = guestInterests.indexOf(option);
+    if (index < 0) {
+      guestInterests.push(option);
+    } else {
+      guestInterests.splice(index, 1);
+    }
+    this.setState({guestInterests: guestInterests});
+  }
+
+  hasGuestInterests(option) {
+    return this.state.guestInterests.indexOf(option) >= 0;
   }
 
   getGuestNameRows() {
@@ -211,14 +231,115 @@ class Questionaire extends React.Component {
     );
   }
 
+  getAccommondationRow() {
+    return (
+      <div>
+        <div className="row">
+          <h5>Do you want us to arrange accommandation for you?</h5>
+        </div>
+        <div className="row">&nbsp;</div>
+        <div className="row">
+          <div className="four columns">&nbsp;</div>
+          <div className="two columns">
+            <input
+              type="button"
+              value="Yes"
+              className={this.state.accommondation ? "button-clicked" : undefined}
+              onClick={(e) => this.setAccommondation(true, e)}
+            />
+          </div>
+          <div className="two columns">
+            <input
+              type="button"
+              value="No"
+              className={this.state.accommondation === false ? "button-clicked" : undefined}
+              onClick={(e) => this.setAccommondation(false, e)}
+            />
+          </div>
+          <div className="four columns">&nbsp;</div>
+        </div>
+        <div className="row footnote">
+          We would arrange rooms in our wedding castle
+          or partnered 4-start hotel, depending availability.
+          <br />
+          Price ranges from &euro;210 to &euro;260 per double room per night.
+        </div>
+      </div>
+    );
+  }
+
+  getGuestInterestsRow() {
+    return (
+      <div>
+        <div className="row">
+          <h5>Anything interests you?</h5>
+        </div>
+        <div className="row">&nbsp;</div>
+        <div className="row">
+          <div className="six columns">
+            <input
+              type="button"
+              value="Salzburg & Salt mine"
+              className={this.hasGuestInterests('tour') ? "button-clicked" : undefined}
+              onClick={(e) => this.toggleGuestInterests('tour', e)}
+            />
+          </div>
+          <div className="six columns">
+            <input
+              type="button"
+              value="Ski / Snowboarding"
+              className={this.hasGuestInterests('ski') ? "button-clicked" : undefined}
+              onClick={(e) => this.toggleGuestInterests('ski', e)}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="six columns">
+            <input
+              type="button"
+              value="Glacier hiking"
+              className={this.hasGuestInterests('glacier') ? "button-clicked" : undefined}
+              onClick={(e) => this.toggleGuestInterests('glacier', e)}
+            />
+          </div>
+          <div className="six columns">
+            <input
+              type="button"
+              value="Igloo building"
+              className={this.hasGuestInterests('igloo') ? "button-clicked" : undefined}
+              onClick={(e) => this.toggleGuestInterests('igloo', e)}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   getHiddenForm() {
     let guestNames = this.state.otherGuests.filter((g) => g.length > 0).join();
+    let guestInterests = this.state.guestInterests.join();
     return (
-      <form action="" method="post" style={{display: "none"}}>
-        <input type="hidden" name="mainGuestName" value={this.state.mainGuestName} />
-        <input type="hidden" name="otherGuestNames" value={guestNames} />
-        <input type="hidden" name="arrivalTime" value={this.state.arrivalTime} />
-        <input type="hidden" name="casualDinner" value={!!this.state.casualDinner} />
+      <form action="" method="post">
+        <div className="row">
+          <div className="two columns">&nbsp;</div>
+          <div className="eight columns">
+            <textarea
+              className="u-full-width"
+              rows="4"
+              placeholder="Do you need any special arrangement?">
+            </textarea>
+          </div>
+          <div className="two columns">&nbsp;</div>
+        </div>
+        <div className="row">
+            <input type="hidden" name="mainGuestName" value={this.state.mainGuestName} />
+            <input type="hidden" name="otherGuestNames" value={guestNames} />
+            <input type="hidden" name="arrivalTime" value={this.state.arrivalTime} />
+            <input type="hidden" name="casualDinner" value={!!this.state.casualDinner} />
+            <input type="hidden" name="accommondation" value={!!this.state.accommondation} />
+            <input type="hidden" name="guestInterests" value={guestInterests} />
+            <input type="submit" value="Be our guest"/>
+        </div>
       </form>
     );
   }
@@ -231,6 +352,8 @@ class Questionaire extends React.Component {
     if (this.state.arrivalTime > 1) {
       casualDinnerRow = <div>{this.getCasualDinnerRow()}<SectionSeperator /></div>;
     }
+    let accommodationRow = this.getAccommondationRow();
+    let guestInterestsRow = this.getGuestInterestsRow();
     return (
       <div className="container">
         <div className="row">
@@ -244,6 +367,10 @@ class Questionaire extends React.Component {
         {arrivalTimeRow}
         <SectionSeperator />
         {casualDinnerRow}
+        {accommodationRow}
+        <SectionSeperator />
+        {guestInterestsRow}
+        <SectionSeperator />
         {hiddenForm}
       </div>
     );

@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import Questionnaire from "./questionnaire";
 
 document.addEventListener("DOMContentLoaded", function(event) {
-  ReactDOM.render(
-   <Questionnaire />,
-   document.getElementById('questionnaire')
-  );
+  let questionnaire = document.getElementById('questionnaire');
+  if (questionnaire) {
+    ReactDOM.render(<Questionnaire />, questionnaire);
+  }
 });
