@@ -15,4 +15,8 @@ router.get('/beOurGuest', function(req, res, next) {
   res.render('guests', { title: 'Be Our Guest' });
 });
 
+router.get('/intro', function(req, res, next) {
+  res.render('intro', { title: 'Yes. We\'re married.' });
+});
+
 module.exports = router;
