@@ -35,5 +35,6 @@ npm-debug.log
 # Generated files
 public/stylesheets/style.css
 public/stylesheets/style.css.map
+.DS_Store
 
 public/javascripts/bundle.js

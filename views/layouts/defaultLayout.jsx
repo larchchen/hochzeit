@@ -12,7 +12,21 @@ class DefaultLayout extends React.Component {
           <script type="text/javascript" src="/static/javascripts/bundle.js" />
           <link rel='stylesheet' href='/static/stylesheets/style.css' />
         </head>
-        <body>{this.props.children}</body>
+        <body>
+          {this.props.children}
+          <footer>
+            <div className='container'>
+              <div className='row reverse-in-mobile'>
+                <div className='six columns copyright'>
+                  &copy; 2018-present Lin Chen All Rights Reserved.
+                </div>
+                <div className='six columns presents'>
+                  Lin Chen &amp; Congrong Fu proudly present.
+                </div>
+              </div>
+            </div>
+          </footer>
+        </body>
       </html>
     );
   }

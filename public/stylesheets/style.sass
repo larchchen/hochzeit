@@ -1,16 +1,31 @@
 body
   padding: 50px
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+  @media (max-width: 549px)
+    padding: 50px 15px
+
+footer
+  font-size: 0.8em
+  color: #777
+  .presents
+    text-align: right
+
+  @media (max-width: 549px)
+    text-align: center
+
 
 a, a:hover, a:focus
-  color: #000
-  text-decoration: none
-  background-color: #eee
-  font-size: 1.2em
+  color: #222
+  text-decoration: underline
 
 a:hover
-  font-weight: bold
+  color: #777
+  text-decoration: underline
 
+@media (max-width: 549px)
+  .reverse-in-mobile
+    display: flex
+    flex-direction: column-reverse
 
 .footnote
   font-size: 0.8em
@@ -30,5 +45,5 @@ a:hover
     color: #fff
     background-color: #bbb
 
-  .button-clicked:hover,
+  .button-clicked:hover
     border-color: #777

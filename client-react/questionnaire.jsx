@@ -174,15 +174,15 @@ class Questionaire extends React.Component {
           <div className="four columns">
             <input
               type="button"
-              value="Morning, 5th Feb"
+              value="Morning, 9th Feb"
               className={this.state.arrivalTime === 3 ? "button-clicked" : undefined}
-              onClick={(e) => this.setArrivalTime(1, e)}
+              onClick={(e) => this.setArrivalTime(3, e)}
             />
           </div>
           <div className="four columns">
             <input
               type="button"
-              value="Afternoon, 5th Feb"
+              value="Afternoon, 9th Feb"
               className={this.state.arrivalTime === 2 ? "button-clicked" : undefined}
               onClick={(e) => this.setArrivalTime(2, e)}
             />
@@ -190,9 +190,9 @@ class Questionaire extends React.Component {
           <div className="four columns">
             <input
               type="button"
-              value="Morning, 6th Feb"
+              value="Morning, 10th Feb"
               className={this.state.arrivalTime === 1 ? "button-clicked" : undefined}
-              onClick={(e) => this.setArrivalTime(3, e)}
+              onClick={(e) => this.setArrivalTime(1, e)}
             />
           </div>
         </div>
@@ -260,7 +260,7 @@ class Questionaire extends React.Component {
         </div>
         <div className="row footnote">
           We would arrange rooms in our wedding castle
-          or partnered 4-start hotel, depending availability.
+          or partnered 4-star hotel, depending on availability.
           <br />
           Price ranges from &euro;210 to &euro;260 per double room per night.
         </div>
