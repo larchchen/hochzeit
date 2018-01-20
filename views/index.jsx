@@ -1,14 +1,14 @@
 var React = require('react');
 var DefaultLayout = require('./layouts/defaultLayout');
 
-class HelloMessage extends React.Component {
+class CoverPage extends React.Component {
   render() {
     return (
       <DefaultLayout title={this.props.title}>
-        <div>Hello {this.props.name}</div>
+        <div id="cover-photo-wrapper"></div>
       </DefaultLayout>
     );
   }
 }
 
-module.exports = HelloMessage;
+module.exports = CoverPage;

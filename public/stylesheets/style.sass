@@ -1,10 +1,17 @@
 body
-  padding: 50px
+  position:relative !important
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+
+#body-wrapper
+  padding: 50px
   @media (max-width: 549px)
     padding: 50px 15px
 
 footer
+  position: absolute
+  bottom: 15px
+  padding: 20px 50px 15px
+  width: 100%
   font-size: 0.8em
   color: #777
   .presents
@@ -42,6 +49,7 @@ a:hover
 
   .image.column
     text-align: center
+    overflow: hidden
 
     @media (min-width: 550px)
       img
@@ -52,6 +60,13 @@ a:hover
         width: 100%
         margin-bottom: 20px
 
+#cover-photo-wrapper
+  position: fixed 
+  width: 100% 
+  height: 100%
+  background: url(../images/cover.jpg) no-repeat center top fixed
+  background-size: cover
+  overflow: hidden;
 
 #questionnaire
   text-align: center
