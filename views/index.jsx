@@ -16,10 +16,13 @@ class CoverPage extends React.Component {
           <div className="time en-font"><i>
             10 Feb, 2019
           </i></div>
-          <div className="next-button next-cn cn-font">敬请惠临</div>
-          <a href="/intro">
+          <a href="/intro/cn">
+            <div className="next-button next-cn cn-font">敬请惠临</div>
+          </a>
+          <br />
+          <a href="/intro/en">
             <div className="next-button next-en en-font">
-              <i>Register</i>
+              <i>Be our guest</i>
             </div>
           </a>
         </div>

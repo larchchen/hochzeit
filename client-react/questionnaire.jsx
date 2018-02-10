@@ -357,7 +357,11 @@ class Questionaire extends React.Component {
     return (
       <div className="container">
         <div className="row">
-          <h1>Be our guest</h1>
+          {this.props.lang === 'cn' ? (
+            <h1>敬请惠临</h1>
+          ) : (
+            <h1>Be our guest</h1>
+          )}
         </div>
         <div className="row">
           <hr className="u-full-width" />

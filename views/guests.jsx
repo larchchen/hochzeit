@@ -6,7 +6,7 @@ class GuestForm extends React.Component {
   render() {
     return (
       <WrapperLayout title={this.props.title}>
-        <div id="questionnaire"></div>
+        <div id="questionnaire" data-lang={this.props.lang}></div>
       </WrapperLayout>
     );
   }
