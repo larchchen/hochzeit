@@ -4,8 +4,8 @@ import Questionnaire from "./questionnaire";
 
 document.addEventListener("DOMContentLoaded", function(event) {
   let questionnaire = document.getElementById('questionnaire');
-  let lang = questionnaire.dataset.lang;
   if (questionnaire) {
+    let lang = questionnaire.dataset.lang;
     ReactDOM.render(<Questionnaire lang={lang} />, questionnaire);
   }
 });

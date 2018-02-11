@@ -22,13 +22,13 @@ class Prepare extends React.Component {
                 <div className="align-center">
                   <ul>
                     <li>
-                      Keep warm. Temprature ranges from +5 to -15.
+                      Keep warm. Temprature ranges from +5&#8451; to -15&#8451;.
                     </li>
                     <li>
                       Definitely you need proper winter jackets.
                     </li>
                     <li>
-                      A water-proof snow boots are highly recommended.
+                      A pair of water-proof snow boots are highly recommended.
                     </li>
                     <li>
                       Gloves, Beanie, Scarf. Become a bear.
@@ -37,7 +37,7 @@ class Prepare extends React.Component {
                       Bring your ski equipments.
                     </li>
                     <li>
-                      Plan your pre-/post-wedding trips.
+                      Plan your pre/post-wedding trips.
                     </li>
                     <li>
                       Don't forget you camera.
@@ -59,7 +59,7 @@ class Prepare extends React.Component {
                       Rest well. Our wedding lasts from 2pm until midnight.
                     </li>
                     <li>
-                      Gentelmen, please dress up in black-tie suit.
+                      Gentlemen, please dress up in black-tie suit.
                     </li>
                     <li>
                       Ladies, please put on your favourite cocktail dress.

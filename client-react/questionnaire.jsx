@@ -16,7 +16,6 @@ class Questionaire extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      stage: 0,
       mainGuestName: '',
       otherGuests: [],
       arrivalTime: 0,
@@ -26,6 +25,7 @@ class Questionaire extends React.Component {
     this.handleOtherGuestNameChange = this.handleOtherGuestNameChange.bind(this);
     this.addGuest = this.addGuest.bind(this);
     this.removeGuest = this.removeGuest.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleMainGuestNameChange(event) {
@@ -78,6 +78,26 @@ class Questionaire extends React.Component {
     return this.state.guestInterests.indexOf(option) >= 0;
   }
 
+  handleSubmit(e) {
+    let hasError = false;
+    e.preventDefault();
+    if (this.state.accommondation === undefined) {
+      hasError = true;
+      this.setState({isErrorAccommondation: true});
+    }
+    if (!Number.isInteger(this.state.arrivalTime) || this.state.arrivalTime < 1 || this.state.arrivalTime > 3) {
+      hasError = true;
+      this.setState({isErrorArrivalTime: true});
+    }
+    if (!!!this.state.mainGuestName) {
+      hasError = true;
+      this.setState({isErrorGuestName: true});
+    }
+    if (!hasError) {
+      e.target.submit();
+    }
+  }
+
   getGuestNameRows() {
     let addNewGuestButton = (
       <div className="row">
@@ -96,7 +116,7 @@ class Questionaire extends React.Component {
       <div className="row">
         <div className="three columns">&nbsp;</div>
         <div className="six columns">
-          <label htmlFor="mainGuestName">Your name</label>
+          <label className={(this.state.isErrorGuestName ? 'error' : '')} htmlFor="mainGuestName">Your name *</label>
           <input
             className="u-full-width"
             type="text"
@@ -166,8 +186,8 @@ class Questionaire extends React.Component {
   getArrivalTimeRow() {
     return (
       <div>
-        <div className="row">
-          <h5>When will you arrive at our wedding castle?</h5>
+        <div className={"row " + (this.state.isErrorArrivalTime ? 'error' : '')}>
+          <h5>When will you arrive at our wedding castle? *</h5>
         </div>
         <div className="row">&nbsp;</div>
         <div className="row">
@@ -234,8 +254,8 @@ class Questionaire extends React.Component {
   getAccommondationRow() {
     return (
       <div>
-        <div className="row">
-          <h5>Do you want us to arrange accommandation for you?</h5>
+        <div className={"row " + (this.state.isErrorAccommondation ? 'error' : '')}>
+          <h5>Do you want us to arrange accommondation for you? *</h5>
         </div>
         <div className="row">&nbsp;</div>
         <div className="row">
@@ -316,21 +336,28 @@ class Questionaire extends React.Component {
   }
 
   getHiddenForm() {
-    let guestNames = this.state.otherGuests.filter((g) => g.length > 0).join();
-    let guestInterests = this.state.guestInterests.join();
+    let guestNames = this.state.otherGuests.filter((g) => g.length > 0).join(',');
+    let guestInterests = this.state.guestInterests.join(',');
+    let url = "/keepInTouch/" + this.props.lang;
+    let error = null;
+    if (this.state.isErrorGuestName || this.state.isErrorAccommondation || this.state.isErrorArrivalTime) {
+      error = <div style={{padding: "20px 0"}} className="row error">Please provide more information.</div>
+    }
     return (
-      <form action="" method="post">
+      <form action={url} method="post" onSubmit={this.handleSubmit}>
         <div className="row">
           <div className="two columns">&nbsp;</div>
           <div className="eight columns">
             <textarea
               className="u-full-width"
+              name="specialNeed"
               rows="4"
               placeholder="Do you need any special arrangement?">
             </textarea>
           </div>
           <div className="two columns">&nbsp;</div>
         </div>
+        {error}
         <div className="row">
             <input type="hidden" name="mainGuestName" value={this.state.mainGuestName} />
             <input type="hidden" name="otherGuestNames" value={guestNames} />

@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var expressSanitized = require('express-sanitize-escape');
 var sassMiddleware = require('node-sass-middleware');
 
 var index = require('./routes/index');
@@ -15,11 +16,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 
+
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.png')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(expressSanitized.middleware());
+
 app.use(cookieParser());
 app.use('/static', sassMiddleware({
   src: path.join(__dirname, 'public'),

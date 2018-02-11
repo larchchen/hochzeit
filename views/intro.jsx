@@ -13,7 +13,7 @@ class Intro extends React.Component {
           当然，我们也非常欢迎你生命中最重要的人。<br />
           而且，如果你能早一天来，我们还会安排超级有趣的活动。<br /> 
           但是，请务必着礼服出席。<br />
-          <a target="_blank" href="/prepare/en">
+          <a target="_blank" href="/prepare/cn">
             了解该如何准备你的行李。
           </a>
         </div>
@@ -42,7 +42,7 @@ class Intro extends React.Component {
           但是，我们不会接受任何形式的礼物或礼金。<br />
           如果，你能负担一下自己的住宿费用，我们会很感激的。<br />
           另外，到达婚礼的地点可能需要一些周折。<br />
-          <a target="_blank" href="/schloss/en">
+          <a target="_blank" href="/arrive/cn">
             了解如何前来我们的婚礼。  
           </a>
           <br />
@@ -55,7 +55,7 @@ class Intro extends React.Component {
         No, neither the bride nor the groom will run away from the wedding.<br />
         No, we will not accept any gifts in any form, although we would appreciate if you could pay for your accommondation.<br />
         No, there is no direct access to the premise.<br /> 
-        <a target="_blank" href="/schloss/en">
+        <a target="_blank" href="/arrive/en">
           No, you need to read this to get there.
         </a>
         <br />
@@ -85,7 +85,7 @@ class Intro extends React.Component {
         Yes, you are still welcomed if you miss the dealine, but we won't be able to guarantee your accommondation any more.<br />
         Yes, please inform us immediately if anything changes.<br />
         <a target="_blank" href="/beOurGuest/en">
-          Yes, please fill this questionnaire to help with our arrangement.
+          Yes, please fill in this questionnaire to help with our arrangement.
         </a>
       </div>
     );

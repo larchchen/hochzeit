@@ -43,4 +43,12 @@ router.get('/arrive/cn', function(req, res, next) {
   res.render('arrive', { title: '准时到达', lang: 'cn' });
 });
 
+router.post('/keepInTouch/en', function(req, res, next) {
+  res.render('touch', { title: 'Keep in touch.', lang: 'en', data: req.body });
+});
+
+router.post('/keepInTouch/cn', function(req, res, next) {
+  res.render('touch', { title: '保持联系', lang: 'cn', data: req.body });
+});
+
 module.exports = router;
