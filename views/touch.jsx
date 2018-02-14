@@ -41,47 +41,71 @@ class CoverPage extends React.Component {
     }
     let data = this.props.data;
     let accommondation = (
-      <div className="row">
-        You would like us to arrange accommondation.
-      </div>
+      <div className="row">{
+        this.props.lang === 'cn' ? (
+          <span>您希望我们为您安排住宿。</span>
+        ) : (
+          <span>You would like us to arrange accommondation.</span>
+        )
+      }</div>
     );
     if (!data.accommondation) {
       accommondation = (
-        <div className="row">
-          You will book your stay by yourself.
-        </div>
+        <div className="row">{
+          this.props.lang === 'cn' ? (
+            <span>您将自己安排住宿。</span>
+          ) : (
+            <span>You will book your stay by yourself.</span>
+          )
+        }</div>
       );
     }
     let arrivalTime = null;
     switch (data.arrivalTime) {
       case 1:
         arrivalTime = (
-          <div className="row">
-            You will arrive in the morning of Feb 10th.
-          </div>
+          <div className="row">{
+            this.props.lang === 'cn' ? (
+              <span>您将在2月10日上午抵达。</span>
+            ) : (
+              <span>You will arrive in the morning of Feb 10th.</span>
+            )
+          }</div>
         );
         break;
       case 2:
         arrivalTime = (
-          <div className="row">
-            You will arrive in the afternoon of Feb 9th.
-          </div>
+          <div className="row">{
+            this.props.lang === 'cn' ? (
+              <span>您将在2月9日下午抵达。</span>
+            ) : (
+              <span>You will arrive in the afternoon of Feb 9th.</span>
+            )
+          }</div>
         );
         break;
       case 3:
         arrivalTime = (
-          <div className="row">
-            You will arrive in the morning of Feb 9th.
-          </div>
+          <div className="row">{
+            this.props.lang === 'cn' ? (
+              <span>您将在2月9日上午抵达。</span>
+            ) : (
+              <span>You will arrive in the morning of Feb 9th.</span>
+            )
+          }</div>
         );
         break;
     }
     let casualDinner = null;
     if (data.casualDinner) {
       casualDinner = (
-        <div className="row">
-          You would like to have a dinner with us in the evening of Feb 9th.
-        </div>
+        <div className="row">{
+          this.props.lang === 'cn' ? (
+            <span>您愿意2月9日晚上和我们一起晚餐。</span>
+          ) : (
+            <span>You would like to have a dinner with us in the evening of Feb 9th.</span>
+          )
+        }</div>
       );
     }
     let activity_dict = {
@@ -90,6 +114,14 @@ class CoverPage extends React.Component {
       'glacier': 'Glacier hiking',
       'igloo': 'Igloo building',
     };
+    if (this.props.lang === 'cn') {
+      activity_dict = {
+        'tour': '游览萨尔斯堡和盐矿',
+        'ski': '滑雪',
+        'glacier': '冰川徒步',
+        'igloo': '建雪屋',
+      };
+    }
     let activities = null;
     if (data.guestInterests) {
       let guestInterests = data.guestInterests.split(',');
@@ -98,11 +130,19 @@ class CoverPage extends React.Component {
           return activity_dict[i];
         }
       }).join(',');
-      activities = (
-        <div className="row">
-          You are interested in: {fullInterests}.
-        </div>
-      );
+      if (this.props.lang === 'cn') {
+        activities = (
+          <div className="row">
+            您对{fullInterests}感兴趣。
+          </div>
+        );
+      } else {
+        activities = (
+          <div className="row">
+            You are interested in: {fullInterests}.
+          </div>
+        );
+      }
     }
 
     let special = null;
@@ -114,27 +154,55 @@ class CoverPage extends React.Component {
       );
     }
 
-    let guest = (
-      <div className="row">You will not bring other guests.</div>
-    );
+    let guest = (<div className="row">{
+      this.props.langs === 'cn' ? (
+        <span>您将独自前来。</span>
+      ) : (
+        <span>You will not bring other guests.</span>
+      )
+    }</div>);
     if (data.otherGuestNames) {
-      let guests = data.otherGuestNames.split().join(' ');
-      guest = (
-        <div className="row">You will come with {guests}.</div>
-      );
+      let guests = null;
+      if (this.props.lang === 'cn') {
+        guests = data.otherGuestNames.split().join('，');
+        guest = (
+          <div className="row">您将与{guests}一同前来。</div>
+        );
+      } else {
+        guests = data.otherGuestNames.split().join(',');
+        guest = (
+          <div className="row">You will come with {guests}.</div>
+        );
+      }
     }
 
     return (
       <div className="container">
-        <div className="row"><h1>Keep in touch</h1></div>
+        {this.props.lang === 'cn' ? (
+          <div className="row"><h1>保持联系</h1></div>
+        ) : (
+          <div className="row"><h1>Keep in touch</h1></div>
+        )}
         <Seperator />
-        <div className="row">
-          We are so glad that you can come to our wedding.
-        </div>
+        {this.props.lang === 'cn' ? (
+          <div className="row">
+            我们非常期待在婚礼上见到您！
+          </div>
+        ) : (
+          <div className="row">
+            We are so glad that you can come to our wedding.
+          </div>
+        )}
         <div className="row">&nbsp;</div>
-        <div className="row">
-          You told us that:
-        </div>
+        {this.props.lang === 'cn' ? (
+          <div className="row">
+            您刚刚告诉我们：
+          </div>
+        ) : (
+          <div className="row">
+            You told us that:
+          </div>
+        )}
         {guest}
         {arrivalTime}
         {accommondation}
@@ -142,7 +210,11 @@ class CoverPage extends React.Component {
         {activities}
         {special}
         <div className="row">&nbsp;</div>
-        <div className="row">Please inform us if anything changes.</div>
+        {this.props.lang === 'cn' ? (
+          <div className="row">如果您的计划有任何变化请及时通知我们。</div>
+        ) : (
+          <div className="row">Please inform us if anything changes.</div>
+        )}
       </div>
     );
   }
