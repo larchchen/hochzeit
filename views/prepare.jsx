@@ -29,7 +29,7 @@ class Prepare extends React.Component {
                 滑雪器材也可以带哦。
               </li>
               <li>
-                还有计划好婚礼之前之后的行程。
+                还有计划好婚礼前后的行程。
               </li>
               <li>
                 相机千万不要落在家里。
@@ -110,7 +110,7 @@ class Prepare extends React.Component {
                 不要携带任何礼物。
               </li>
               <li>
-                <a href="/beOurGuest/cn">最重要的是，和我们预约席位。</a>
+                <a href="/beOurGuest/cn">最重要的是要和我们预约席位。</a>
               </li>
             </ul>
           </div>
