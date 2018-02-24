@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var DefaultLayout = require('./layouts/DefaultLayout');
+var DefaultLayout = require('./layouts/defaultLayout');
 var Seperator = require('./seperator');
 
 class Arrive extends React.Component {
