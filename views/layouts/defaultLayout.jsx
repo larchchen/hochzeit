@@ -6,6 +6,7 @@ class DefaultLayout extends React.Component {
       <html>
         <head>
           <title>{this.props.title}</title>
+          <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1" />
           <link rel='stylesheet' href='/static/material-icons/material-icons.css' />
           <link rel='stylesheet' href='/static/stylesheets/normalize.css' />
           <link rel='stylesheet' href='/static/stylesheets/skeleton.css' />

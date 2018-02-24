@@ -82,7 +82,7 @@ class CoverPage extends React.Component {
         )
       }</div>
     );
-    if (!data.accommondation) {
+    if (data.accommondation === 'false') {
       accommondation = (
         <div className="row">{
           this.props.lang === 'cn' ? (
@@ -130,13 +130,13 @@ class CoverPage extends React.Component {
         break;
     }
     let casualDinner = null;
-    if (data.casualDinner) {
+    if (data.casualDinner === 'true') {
       casualDinner = (
         <div className="row">{
           this.props.lang === 'cn' ? (
             <span>您愿意2月9日晚上和我们一起晚餐。</span>
           ) : (
-            <span>You would like to have a dinner with us in the evening of Feb 9th.</span>
+            <span>You would like to have dinner with us in the evening of Feb 9th.</span>
           )
         }</div>
       );
@@ -188,7 +188,7 @@ class CoverPage extends React.Component {
     }
 
     let guest = (<div className="row">{
-      this.props.langs === 'cn' ? (
+      this.props.lang === 'cn' ? (
         <span>您将独自前来。</span>
       ) : (
         <span>You will not bring other guests.</span>
