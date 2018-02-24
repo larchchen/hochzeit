@@ -1,13 +1,46 @@
 var React = require('react');
 var DefaultLayout = require('./layouts/defaultLayout');
 var Seperator = require('./seperator');
+var AWS = require('aws-sdk');
+
+AWS.config.update({region: 'eu-west-1'});
 
 class CoverPage extends React.Component {
   componentWillMount() {
     let validated = this.validate();
     if (validated) {
       let output = JSON.stringify(this.props.data, null, 2);
-      console.log(output);
+      let params = {
+        Destination: {
+          ToAddresses: ['larch.lin.chen@gmail.com']
+        },
+        Message: {
+          Body: {
+            Html: {
+             Charset: "UTF-8",
+             Data: output
+            },
+            Text: {
+             Charset: "UTF-8",
+             Data: output
+            }
+           },
+           Subject: {
+            Charset: 'UTF-8',
+            Data: '[Hochzeit] Guests registered.'
+           }
+          },
+        Source: 'larch.lin.chen@gmail.com',
+      };
+      let sendPromise = new AWS.SES({apiVersion: '2017-12-01'}).sendEmail(params).promise();
+      sendPromise.then((data) => {
+        console.log("Email sent.");
+        console.log(output);
+      }).catch((err) => {
+        console.error(err, err.stack);
+        console.log("Email detained.");
+        console.log(output);
+      });
     }
     this.setState({validated: validated});
   }
