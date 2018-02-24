@@ -95,7 +95,7 @@ class CoverPage extends React.Component {
     }
     let arrivalTime = null;
     switch (data.arrivalTime) {
-      case 1:
+      case '1':
         arrivalTime = (
           <div className="row">{
             this.props.lang === 'cn' ? (
@@ -106,7 +106,7 @@ class CoverPage extends React.Component {
           }</div>
         );
         break;
-      case 2:
+      case '2':
         arrivalTime = (
           <div className="row">{
             this.props.lang === 'cn' ? (
@@ -117,7 +117,7 @@ class CoverPage extends React.Component {
           }</div>
         );
         break;
-      case 3:
+      case '3':
         arrivalTime = (
           <div className="row">{
             this.props.lang === 'cn' ? (
@@ -181,9 +181,7 @@ class CoverPage extends React.Component {
     let special = null;
     if (data.specialNeed) {
       special = (
-        <div className="row">
-          {data.specialNeed}
-        </div>
+        <div className="row" dangerouslySetInnerHTML={{__html: data.specialNeed}} />
       );
     }
 
@@ -196,17 +194,15 @@ class CoverPage extends React.Component {
     }</div>);
     if (data.otherGuestNames) {
       let guests = null;
+      let html = null;
       if (this.props.lang === 'cn') {
         guests = data.otherGuestNames.split().join('，');
-        guest = (
-          <div className="row">您将与{guests}一同前来。</div>
-        );
+        html = "您将与"+guests+"一同前来";
       } else {
         guests = data.otherGuestNames.split().join(',');
-        guest = (
-          <div className="row">You will come with {guests}.</div>
-        );
+        html = "You will come with "+guests+".";
       }
+      guest = <div className="row" dangerouslySetInnerHTML={{__html: html}}/>
     }
 
     return (
