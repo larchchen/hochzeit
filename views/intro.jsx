@@ -82,7 +82,7 @@ class Intro extends React.Component {
       <div className="one-half column">
         Yes, we need your confirmation as early as possible.<br />
         Yes, the deadline is July 1, 2018.<br />
-        Yes, you are still welcomed if you miss the dealine, but we won't be able to guarantee your accommondation any more.<br />
+        Yes, you are still welcomed if you miss the deadline, but we won't be able to guarantee your accommondation any more.<br />
         Yes, please inform us immediately if anything changes.<br />
         <a target="_blank" href="/beOurGuest/en">
           Yes, please fill in this questionnaire to help with our arrangement.
