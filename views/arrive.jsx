@@ -135,7 +135,7 @@ class Arrive extends React.Component {
                 </p>
               </div>
               <div className="six columns">
-                <iframe src={googleMapSrc} frameborder="0" style={{border:0}} height="100%" width="100%" allowfullscreen></iframe>
+                <iframe src={googleMapSrc} frameBorder="0" style={{border:0}} height="100%" width="100%" allowFullScreen></iframe>
               </div>
             </div>
             <Seperator />
